@@ -33,12 +33,13 @@ int dir_pin = 7;
 int step_pin = 4 ;
 int servo_pin=12;
 int zendstop_plus=11;
-int zendstop_minus=12;
 char zbutton_plus=A0;
 char zbutton_minus=A1;
 char zmotor=A2;
 
 unsigned long t0;
+
+//G-code parser begin
 
 float parsenumber(char code,float val) {
   char *ptr=buffer;
@@ -51,6 +52,10 @@ float parsenumber(char code,float val) {
   return val;
 } 
 
+//G-code parser end
+
+//Servo control begin
+
 void servoPulse(int servo_pin, int servo_angle) {
   pulse_width = (servo_angle * 11) + 500;  
   digitalWrite(servo_pin, HIGH);       
@@ -59,17 +64,21 @@ void servoPulse(int servo_pin, int servo_angle) {
   delay(1);                        
 }
 
+//Servo control end
+
+//G-code execution begin
+
 void processCommand() {
   int cmd = parsenumber('G',-1);
   switch(cmd) {
     
-    case  1:
+    case  1: //G01 Zxxx Fxxx processing (Z-axis movement)
       stepperq.setMaxSpeed(STP_PER_MM*parsenumber('F',0)/60);
       stepperq.move(STP_PER_MM*parsenumber('Z',0));
       stepperq.start();
     break;
     
-    case  4:
+    case  4: //G04 Pxxx processing (pause P milliseconds)
       delay(parsenumber('P',0));
     break;
     
@@ -78,34 +87,34 @@ void processCommand() {
   cmd = parsenumber('M',-1);
   switch(cmd) {
     
-  case 3:
+  case 3: //M03 Sxxx processing (set servo position to S degree)
     digitalWrite(servo_pin, LOW);
     for (int i=1;i<=180;i++){        
       servoPulse(servo_pin, parsenumber('S',0));
     }
   break;
   
-  case 7:
+  case 7: //M7 processing (cooler on)
     digitalWrite(A3,HIGH);
   break;
   
-  case 9:
+  case 9: //M9 processing (cooler off)
     digitalWrite(A3,LOW);
   break;
   
-  case 17: 
+  case 17: //M17 processing (Z motor on)
     digitalWrite(8,LOW);
   break;
     
-  case 18:  
+  case 18://M18 processing (Z motor off)   
     digitalWrite(8,HIGH);
   break;
     
-  case 245:
+  case 245: //M245 processing (cooler on)
     digitalWrite(A3,HIGH);
   break;
     
-  case 246:
+  case 246: //M246 processing (cooler off)
     digitalWrite(A3,LOW);
   break;
   
@@ -113,6 +122,7 @@ void processCommand() {
   }
 } 
 
+//G-code execution end
 
 void setup() {
   Serial.begin(DEFAULTBAUDRATE);
@@ -123,7 +133,7 @@ void setup() {
   digitalWrite(8,HIGH);
   pinMode(A3,LOW);
   pinMode(zendstop_plus, INPUT_PULLUP);
-  pinMode(zendstop_minus, INPUT_PULLUP);
+  //pinMode(zendstop_minus, INPUT_PULLUP);
   pinMode(zbutton_plus, INPUT_PULLUP);
   pinMode(zbutton_minus, INPUT_PULLUP);
   pinMode(zmotor, INPUT_PULLUP);
@@ -188,4 +198,3 @@ void loop() {
    digitalWrite(8,HIGH);
   }  
 }
-
