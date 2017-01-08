@@ -27,4 +27,10 @@ Designed to work on Arduino Uno + CNC shild hardware and Creation Workshop softw
  
  ![pinout](https://github.com/3DLab-DLP/jap/blob/master/Img/Arduino-CNC-Shield-V3.jpg)
 
+***
+ 
+  Setup
+  *#define STP_PER_MM - number of steps per millimeter for your Z-axis
+  *#define ACCEL_STP - acceleration in steps per second per second
+  *#define ZBUTTON_STEP - minimum number of steps when Z-axis control button is pressed
 
