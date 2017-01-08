@@ -14,7 +14,7 @@ Designed to work on Arduino Uno + CNC shild hardware and Creation Workshop softw
 
 ***
 
-* List of Supported G-Codes
+ List of Supported G-Codes
  - Motion: G1
  - Pause: G4
  - Motor on/off: M17, M18
