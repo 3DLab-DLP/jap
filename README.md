@@ -2,7 +2,10 @@
 
 J.A.P. (Just Another Printer) is a tiny firmware for DIY DLP 3D-printer.
 Designed to work on Arduino Uno + CNC shild hardware and Creation Workshop software.
-* Support
+
+***
+
+ Support
 * Z-axis smooth movement
 * Z-axis manual control buttons
 * Z motor manual on/off button
@@ -20,7 +23,7 @@ Designed to work on Arduino Uno + CNC shild hardware and Creation Workshop softw
  
  ***
  
- *CNC shild v.3 pinout:
+ CNC shild v.3 pinout:
  
  ![pinout](https://github.com/3DLab-DLP/jap/blob/master/Img/Arduino-CNC-Shield-V3.jpg)
 
