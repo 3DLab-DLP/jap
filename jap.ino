@@ -31,7 +31,7 @@ int flag=1;
 
 int dir_pin = 7;
 int step_pin = 4 ;
-int servo_pin=12;
+int servo_pin=10;
 int zendstop_plus=11;
 char zbutton_plus=A0;
 char zbutton_minus=A1;
@@ -140,7 +140,7 @@ void setup() {
   pinMode(servo_pin, OUTPUT);
   digitalWrite(servo_pin, LOW);
   for (int i=1;i<=180;i++){        
-    servoPulse(servo_pin, 0);
+    servoPulse(servo_pin, 180);
   } 
 }
 
@@ -198,3 +198,4 @@ void loop() {
    digitalWrite(8,HIGH);
   }  
 }
+
