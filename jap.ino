@@ -19,7 +19,7 @@
 
 #define ACCEL_STP 32000
 #define STP_PER_MM 1600
-#define ZBUTTON_STEP 640
+#define ZBUTTON_STEP 16
 
 char buffer[MAX_BUF];
 int sofar; 
