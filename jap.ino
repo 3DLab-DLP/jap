@@ -109,6 +109,14 @@ void processCommand() {
   case 18://M18 processing (Z motor off)   
     digitalWrite(8,HIGH);
   break;
+  
+  case 106:  
+    digitalWrite(12,LOW);
+  break;
+
+  case 107:  
+    digitalWrite(12,HIGH);
+  break;
     
   case 245: //M245 processing (cooler on)
     digitalWrite(A3,HIGH);
@@ -129,9 +137,12 @@ void setup() {
   sofar=0;
   stepperq.init(dir_pin, step_pin);
   stepperq.setAcceleration(ACCEL_STP);
+  pinMode(12, OUTPUT);
+  digitalWrite(12,HIGH);
   pinMode(8,OUTPUT);
   digitalWrite(8,HIGH);
-  pinMode(A3,LOW);
+  pinMode(A3, OUTPUT);
+  digitalWrite(A3,LOW);
   pinMode(zendstop_plus, INPUT_PULLUP);
   //pinMode(zendstop_minus, INPUT_PULLUP);
   pinMode(zbutton_plus, INPUT_PULLUP);
@@ -198,4 +209,5 @@ void loop() {
    digitalWrite(8,HIGH);
   }  
 }
+
 
