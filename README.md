@@ -19,7 +19,7 @@ Designed to work on Arduino Uno + CNC shild hardware and Creation Workshop softw
  - Pause: G4
  - Motor on/off: M17, M18
  - Cooler on/off: M7(M245), M9(M246)
- - Servo control: M3
+ - Servo control: M3 Sxxx
  
  ***
  
