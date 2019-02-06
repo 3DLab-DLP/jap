@@ -61,6 +61,7 @@ void processCommand() {
       stepperq.setMaxSpeed(STP_PER_MM*parsenumber('F',0)/60);
       stepperq.move(STP_PER_MM*parsenumber('Z',0));
       stepperq.start();
+      Serial.write("Z_move_comp\n");
     break;
     
     case  4: //G04 Pxxx processing (pause P milliseconds)
