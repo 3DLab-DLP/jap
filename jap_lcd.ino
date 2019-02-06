@@ -112,6 +112,7 @@ void processCommand() {
 
 void setup() {
   Serial.begin(DEFAULTBAUDRATE);
+  Serial.print("JAP LCD\n");
   sofar=0;
   stepperq.init(dir_pin, step_pin);
   stepperq.setAcceleration(ACCEL_STP);
