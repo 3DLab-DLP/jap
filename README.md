@@ -1,7 +1,8 @@
 # J.A.P.
 
-J.A.P. (Just Another Printer) is a tiny firmware for DIY DLP and LCD 3D-printer.
-Designed to work on Arduino Uno + CNC shild hardware and Creation Workshop software.
+J.A.P. (Just Another Printer) is a tiny firmware for DIY LCD 3D-printer.
+Designed to work on Arduino Uno + CNC shild hardware with "Creation Workshop"
+or "nanoDLP" software.
 
 ***
 
@@ -10,34 +11,40 @@ Designed to work on Arduino Uno + CNC shild hardware and Creation Workshop softw
 * Z-axis manual control buttons
 * Z motor manual on/off button
 * Cooler control
-* Servo control
+* LED control
 
 ***
 
  List of Supported G-Codes
  - Motion: G1
  - Pause: G4
- - Motor on/off: M17, M18
- - Cooler on/off: M7(M245), M9(M246)
- - Servo control: M3 Sxxx
- - UV LED on/off: M107/M106
+ - Positioning: G90, G91, G92
+
+ - Motor on:  M17
+ - Motor off: M18, M84
+ - Cooler on:  M7, M245
+ - Cooler off: M9, M246
+ - UV LED on:  M3, M4, M106
+ - UV LED off: M5, M107
  
+ - Current position:  M114
+
  ***
- 
- CNC shild v.3 pinout for DLP:
- 
- ![pinout](https://github.com/3DLab-DLP/jap/blob/master/Img/Arduino-CNC-Shield-V3.jpg)
- 
+
  CNC shild v.3 pinout for LCD:
  
  ![pinout](https://github.com/3DLab-DLP/jap/blob/master/Img/JAP_LCD_pinout.jpg)
 
 ***
  
-  Setup
-  * #define STP_PER_MM - number of steps per millimeter for your Z-axis
-  * #define ACCEL_STP - acceleration in steps per second per second
-  * #define ZBUTTON_STEP - minimum number of steps when Z-axis control button is pressed
+  Setup:
+
+  * #define STEPS_PER_MM - resolution in steps/mm for Z-axis
+  * #define MAX_SPEED    - maximum speed in mm/s
+  * #define ACC_Z        - acceleration in mm/s2
+  * #define Z_MIN_MM     - lower Z-axis bound in mm
+  * #define Z_MAX_MM     - upper Z-axis bound in mm
+  * #define TIMEOUT      - stepper idle hold timeout in minutes
   
   P.S. Jumper or normally closed endstop needed on Z+. Z+ is not a home! It's only limiter. 
 
